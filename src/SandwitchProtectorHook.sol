@@ -35,9 +35,10 @@ contract SandwitchProtectorHook is BaseHook {
 
     mapping(PoolId id => PoolData) private poolDataList;
 
-    uint24 public constant baseFee = 100; // using the lowest uniswapV3 fee tier for easier testing. Subject to change.
+    uint24 private immutable baseFee;
 
-    constructor(IPoolManager poolManager) BaseHook(poolManager) {
+    constructor(IPoolManager poolManager, uint24 _baseFee) BaseHook(poolManager) {
+        baseFee = _baseFee;
     }
 
     function getHookPermissions()

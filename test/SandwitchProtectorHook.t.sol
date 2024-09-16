@@ -22,6 +22,7 @@ contract SandwitchProtectorHookTest is Test, Deployers {
 
     SandwitchProtectorHook hook;
     PoolId id;
+    uint24 private baseFee = 100; // using lowest UniswapV3 tier fee for simplicity
 
     function setUp() public {
         deployFreshManagerAndRouters();
@@ -36,7 +37,7 @@ contract SandwitchProtectorHookTest is Test, Deployers {
                     | Hooks.AFTER_SWAP_FLAG
             )
         );
-        deployCodeTo("SandwitchProtectorHook.sol", abi.encode(manager), hookAddress);
+        deployCodeTo("SandwitchProtectorHook.sol", abi.encode(manager, baseFee), hookAddress);
         hook = SandwitchProtectorHook(hookAddress);
 
         (key, id) = initPool(
@@ -56,8 +57,8 @@ contract SandwitchProtectorHookTest is Test, Deployers {
         params.liquidityDelta = 1e8 * 1e18;
         modifyLiquidityRouter.modifyLiquidity(key, params, ZERO_BYTES);
 
-        assertEq(uint256(hook.currentFeeForTrade(id, true)), uint256(hook.baseFee()));
-        assertEq(uint256(hook.currentFeeForTrade(id, false)), uint256(hook.baseFee()));
+        assertEq(uint256(hook.currentFeeForTrade(id, true)), uint256(baseFee));
+        assertEq(uint256(hook.currentFeeForTrade(id, false)), uint256(baseFee));
 
         (uint256 tokensSold, uint256 tokensBought) = makeSwap(zeroForOne, -int256(amountIn));
 
