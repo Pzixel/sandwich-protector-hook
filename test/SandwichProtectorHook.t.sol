@@ -12,7 +12,7 @@ import {PoolId} from "v4-core/types/PoolId.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
 import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
 import {Deployers} from "@uniswap/v4-core/test/utils/Deployers.sol";
-import {SandwitchProtectorHook} from "../src/SandwitchProtectorHook.sol";
+import {SandwichProtectorHook} from "../src/SandwichProtectorHook.sol";
 import {IERC20Minimal} from "v4-core/interfaces/external/IERC20Minimal.sol";
 import {LPFeeLibrary} from "v4-core/libraries/LPFeeLibrary.sol";
 import './TestHelpers.sol';
@@ -20,7 +20,7 @@ import './TestHelpers.sol';
 contract SandwitchProtectorHookTest is Test, Deployers {
     using CurrencyLibrary for Currency;
 
-    SandwitchProtectorHook hook;
+    SandwichProtectorHook hook;
     PoolId id;
     uint24 private baseFee = 100; // using lowest UniswapV3 tier fee for simplicity
 
@@ -37,8 +37,8 @@ contract SandwitchProtectorHookTest is Test, Deployers {
                     | Hooks.AFTER_SWAP_FLAG
             )
         );
-        deployCodeTo("SandwitchProtectorHook.sol", abi.encode(manager, baseFee), hookAddress);
-        hook = SandwitchProtectorHook(hookAddress);
+        deployCodeTo("SandwichProtectorHook.sol", abi.encode(manager, baseFee), hookAddress);
+        hook = SandwichProtectorHook(hookAddress);
 
         (key, id) = initPool(
             currency0,

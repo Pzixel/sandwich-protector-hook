@@ -15,7 +15,7 @@ import {PoolId, PoolIdLibrary} from "@uniswap/v4-core/src/types/PoolId.sol";
 import {StateLibrary} from "@uniswap/v4-core/src/libraries/StateLibrary.sol";
 import {Math} from "openzeppelin-contracts/contracts/utils/math/Math.sol";
 
-contract SandwitchProtectorHook is BaseHook {
+contract SandwichProtectorHook is BaseHook {
     using CurrencySettler for Currency;
     using LPFeeLibrary for uint24;
     using PoolIdLibrary for PoolKey;
@@ -158,7 +158,7 @@ contract SandwitchProtectorHook is BaseHook {
 
         if (zeroForOne) {
             // 1 -> 0 user
-            // 0 -> 1 sandwitch
+            // 0 -> 1 sandwich
 
             (uint256 a0, uint256 a1) = getCurrencyVolume(poolData.currency1Data);
             (uint256 b0, ) = getCurrencyVolume(poolData.currency0Data);
@@ -167,7 +167,7 @@ contract SandwitchProtectorHook is BaseHook {
             return uint24(Math.min(extraFee + baseFee, SwapMath.MAX_FEE_PIPS));
         } else {
             // 0 -> 1 user
-            // 1 -> 0 sandwitch
+            // 1 -> 0 sandwich
 
             (uint256 a0, uint256 a1) = getCurrencyVolume(poolData.currency0Data);
             (uint256 b0, ) = getCurrencyVolume(poolData.currency1Data);

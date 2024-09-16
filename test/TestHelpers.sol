@@ -12,7 +12,7 @@ import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
 import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
 import {Deployers} from "@uniswap/v4-core/test/utils/Deployers.sol";
-import {SandwitchProtectorHook} from "../src/SandwitchProtectorHook.sol";
+import {SandwichProtectorHook} from "../src/SandwichProtectorHook.sol";
 import {IERC20Minimal} from "v4-core/interfaces/external/IERC20Minimal.sol";
 import {LPFeeLibrary} from "v4-core/libraries/LPFeeLibrary.sol";
 
