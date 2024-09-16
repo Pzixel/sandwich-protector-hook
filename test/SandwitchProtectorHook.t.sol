@@ -49,8 +49,7 @@ contract SandwitchProtectorHookTest is Test, Deployers {
         );
     }
 
-    function test_no_sandwich_default_behavior() public {
-        bool zeroForOne = true;
+    function test_no_sandwich_default_behavior(bool zeroForOne) public {
         uint256 amountIn = 100e18;
 
         IPoolManager.ModifyLiquidityParams memory params = LIQUIDITY_PARAMS;
